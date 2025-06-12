@@ -1,0 +1,39 @@
+extends ../layouts/main
+
+block content
+    h1 Medicamentos de la admisión #{admisionId}
+
+    form(method="post", action="/medico/medicamentos")
+        input(type="hidden", name="admision_id", value=admisionId)
+        .mb-3
+            label.form-label Nombre
+            input.form-control(type="text", name="nombre", required)
+        .mb-3
+            label.form-label Dosis
+            input.form-control(type="text", name="dosis", required)
+        .mb-3
+            label.form-label Frecuencia
+            input.form-control(type="text", name="frecuencia", required)
+        .mb-3
+            label.form-label Vía
+            input.form-control(type="text", name="via", required)
+        .mb-3
+            label.form-label Observaciones
+            textarea.form-control(name="observaciones", rows="2")
+        button.btn.btn-primary(type="submit") Prescribir
+
+    if medicamentos && medicamentos.length
+        h2.mt-4 Medicamentos Prescritos
+        ul.list-group
+            each med in medicamentos
+                li.list-group-item
+                    span.fw-bold= med.nombre
+                    |  - 
+                    span= med.dosis
+                    |  - 
+                    span= med.frecuencia
+                    |  - 
+                    span= med.via
+                    if med.observaciones
+                        br
+                        small.text-muted= med.observaciones
