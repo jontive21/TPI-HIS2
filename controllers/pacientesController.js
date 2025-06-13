@@ -12,7 +12,7 @@ exports.showPacientes = async (req, res) => {
     if (search) {
         pacientes = await Paciente.searchPacientes(search);
     } else {
-        const [rows] = await require('../config/db').query(
+        const [rows] = await pool.query(
             `SELECT * FROM pacientes WHERE activo = TRUE ORDER BY apellido, nombre LIMIT ? OFFSET ?`,
             [limit, offset]
         );
@@ -35,7 +35,7 @@ exports.showNewPaciente = (req, res) => {
 // Mostrar formulario de edición
 exports.showEditPaciente = async (req, res) => {
     const id = req.params.id;
-    const [rows] = await require('../config/db').query(
+    const [rows] = await pool.query(
         `SELECT * FROM pacientes WHERE id = ? AND activo = TRUE`, [id]
     );
     if (!rows.length) {
