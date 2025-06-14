@@ -1,6 +1,29 @@
 extends ../layout
 
 block content
-  h1 Enfermería
-  p Aquí irá el módulo de enfermería.
-  a.btn.btn-primary(href="/") Volver al inicio
+  .container.mt-4
+    h1= title // Usar el título pasado por el controlador
+
+    if admisiones && admisiones.length > 0
+      h2 Pacientes Admitidos
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th Paciente
+            th Habitación
+            th Cama
+            th Acciones
+        tbody
+          each admision in admisiones
+            tr
+              td= `${admision.apellido}, ${admision.nombre}`
+              td= admision.habitacion_numero
+              td= admision.cama_numero
+              td
+                a.btn.btn-sm.btn-info(href=`/enfermeria/signos-vitales/${admision.admision_id}`) Ver/Registrar Evolución
+    else
+      .alert.alert-info
+        p No hay pacientes actualmente admitidos que requieran seguimiento de enfermería o no se pudieron cargar los datos.
+
+    hr
+    a.btn.btn-secondary(href="/dashboard")
