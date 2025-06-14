@@ -170,6 +170,7 @@ exports.cancelarAdmision = async (req, res) => {
     }
 };
 
+/* Comentada temporalmente para evitar confusión, processAdmision maneja la lógica principal.
 const asignarCama = async (req, res) => {
   try {
     const { pacienteId, camaId } = req.body;
@@ -200,6 +201,7 @@ const asignarCama = async (req, res) => {
     res.status(500).render('error', { message: 'Error en asignación' });
   }
 };
+*/
 
 
 
