@@ -2,7 +2,8 @@ extends ../layout
 
 block content
   .container.mt-4
-    h1= title // Usar el título pasado por el controlador
+    //- Usar el título pasado por el controlador (este es un comentario Pug válido)
+    h1= title
 
     if admisiones && admisiones.length > 0
       h2 Pacientes Admitidos
@@ -26,4 +27,4 @@ block content
         p No hay pacientes actualmente admitidos que requieran seguimiento de enfermería o no se pudieron cargar los datos.
 
     hr
-    a.btn.btn-secondary(href="/dashboard")
+    a.btn.btn-secondary(href="/dashboard") Volver al Dashboard
