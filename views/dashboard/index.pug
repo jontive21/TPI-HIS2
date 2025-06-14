@@ -1,16 +1,19 @@
 extends ../layout
 
 block content
-  h1 
+  h1 #{title} // O tu título preferido
   p Texto de ejemplo.
 
-small Rol: #{user.rol} | Último acceso: #{lastAccess}
+  // INDENTA TODO LO SIGUIENTE PARA QUE ESTÉ DENTRO DE BLOCK CONTENT
+  small Rol: #{user.rol} | Último acceso: #{lastAccess}
 
-.display-4#camas-disponibles #{camasDisponibles}
-small.text-muted de #{camasTotal} total
+  .row.mt-4 // Estructura opcional con Bootstrap
+    .col-md-3
+      .card.text-center.mb-3
+        .card-header Camas Disponibles
+        .card-body
+          .display-4#camas-disponibles #{camasDisponibles}
+          small.text-muted de #{camasTotal} total
+    // ... (y así para los otros indicadores, todos indentados)
 
-.display-4#pacientes-internados #{pacientesInternados}
-.display-4#admisiones-hoy #{admisionesHoy}
-.display-4#altas-hoy #{altasHoy}
-
-// ...resto de tu plantilla...
+  // ...resto de tu plantilla...
